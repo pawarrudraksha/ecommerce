@@ -110,65 +110,45 @@
     </div>
 
     <!-- fourth child -->
-    <div class="row">
+    <div class="row px-1">
       <div class="col-md-10">
         <!-- products -->
         <div class="row mx-1">
-          <div class="col-md-4 mb-2 ">
-            <div class="card">
-              <img
-                class="card-img-top p-3"
-                src="https://th.bing.com/th/id/R.434e7a8d73bb3c61e67ec5972df8e95f?rik=lKf3j8ewsG5iKw&riu=http%3a%2f%2fbrain-images.cdn.dixons.com%2f3%2f1%2f09949613%2fu_09949613.jpg&ehk=4jfO6SX7%2bXjgaLrmPeDgXxrPZWH4Kr6fOh6vt3MjRlw%3d&risl=&pid=ImgRaw&r=0"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-info">Add to card</a>
-                <a href="#" class="btn btn-secondary">View more</a>
+          <?php
+            $select_query="Select * from `mystore`.`products` order by rand() limit 0,9";
+            $result_query=mysqli_query($conn,$select_query);
+            while($row=mysqli_fetch_assoc($result_query)){
+              $product_title=$row["product_title"];
+              $product_description=$row["product_description"];
+              $product_keywords=$row["product_keywords"];
+              $product_price=$row["product_price"];
+              $category_id=$row["category_id"];
+              $brand_id=$row["brand_id"];
+              $product_status='true';
+              $first_image=$row["product_image1"];
+              echo " <div class='col-md-4 mb-2 '>
+              <div class='card'>
+                <img
+                  class='card-img-top p-3'
+                  src='admin/product_images/$first_image'
+                  alt='Card image cap'
+                />
+                <div class='card-body'>
+                  <h5 class='card-title'>$product_title</h5>
+                  <p class='card-text'>
+                    $product_description.
+                  </p>
+                  <a href='#' class='btn btn-info'>Add to card</a>
+                  <a href='#' class='btn btn-secondary'>View more</a>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2 ">
-            <div class="card">
-              <img
-                class="card-img-top p-3"
-                src="https://th.bing.com/th/id/OIP.-3G3SS8PpMdrseC3MeVPXwHaHa?rs=1&pid=ImgDetMain"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-info">Add to card</a>
-                <a href="#" class="btn btn-secondary">View more</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2 ">
-            <div class="card">
-              <img
-                class="card-img-top p-3"
-                src="https://www.ikea.com/in/en/images/products/malm-bed-frame-high-white-stained-oak-veneer-luroey__0637598_pe698416_s5.jpg?f=xl"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-info">Add to card</a>
-                <a href="#" class="btn btn-secondary">View more</a>
-              </div>
-            </div>
-          </div>
+            </div>";
+            }
+
+          ?>
+          <!-- row-end -->
         </div>
+        <!-- col end -->
       </div>
       <div class="col-md-2 bg-secondary p-0">
         <!-- brands to be displayed -->

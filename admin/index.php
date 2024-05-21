@@ -58,7 +58,7 @@
           </div>
           <div class="button text-center">
             <button class="mx-1">
-              <a href="#" class="nav-link text-light bg-info my-1 p-2 mx-1"
+              <a href="insert_product.php" class="nav-link text-light bg-info my-1 p-2 mx-1"
                 >Insert Products</a
               ></button
             ><button class="mx-1">
