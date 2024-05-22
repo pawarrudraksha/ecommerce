@@ -1,6 +1,5 @@
 <?php
   include('includes/connect.php');
-  include('functions/common_function.php')
 ?>
 
 <!DOCTYPE html>
@@ -64,51 +63,22 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="cart.php"
-                ><i class="fa-solid fa-cart-shopping"></i><sup>
-                  <?php
-                    getNoOfCartItems();
-                  ?>
-                </sup></a
-              >
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">
-              Total Price: 
-              <?php
-                getTotalCartPrice()
-              ?>
-              /-
-            </a>            </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0 d-flex" action="search_product.php" method="get">
-            <input
-              class="form-control mr-sm-2 mx-1"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              name="search_data"
-            />
-            <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product" />
-          </form>
+           
         </div>
       </nav>
     </div>
-    <?php 
-      addToCart();
-    ?>
-    <!-- second child -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Welcome Guest</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
-        </li>
-      </ul>
-    </nav>
+        <!-- second child -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+            <a class="nav-link" href="#">Welcome Guest</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+            </li>
+        </ul>
+        </nav>
 
     <!-- third child -->
     <div class="bg-light">
@@ -120,39 +90,17 @@
 
     <!-- fourth child -->
     <div class="row px-1">
-      <div class="col-md-10">
+      <div class="col-md-12">
         <!-- products -->
         <div class="row mx-1">
-          <?php
-            getProducts();
-            getProductByCategories();
-            getProductByBrands();
-          ?>
-          <!-- row-end -->
+            <?php
+                if(!isset($_SESSION['username'])){
+                    include("./users/user_login.php");
+                }else{
+                    include("./payment.php");
+                }
+            ?>
         </div>
-        <!-- col end -->
-      </div>
-      <div class="col-md-2 bg-secondary p-0">
-        <!-- brands to be displayed -->
-        <ul class="navbar-nav me-auto text-center">
-          <li class="nav-item bg-info">
-            <a href="#" class="nav-link text-light"><h4>Delivery brands</h4></a>
-          </li>
-          
-          <?php
-           getBrands()
-          ?>
-        </ul>
-        <!-- Categories to be displayed -->
-        <ul class="navbar-nav me-auto text-center">
-          <li class="nav-item bg-info ">
-            <a href="#" class="nav-link text-light "><h4>Categories</h4></a>
-          </li>
-          
-          <?php
-            getCategories()
-          ?>
-        </ul>
       </div>
     </div>
     <!-- Footer -->

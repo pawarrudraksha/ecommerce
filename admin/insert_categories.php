@@ -2,13 +2,13 @@
   include('../includes/connect.php');
   if(isset($_POST['insert_cat'])){
     $category_title=$_POST['cat_title'];
-    $select_query="SELECT * FROM    `mystore`.`categories` where `category_title`='$category_title'";
+    $select_query="SELECT * FROM    `categories` where `category_title`='$category_title'";
     $result_select=mysqli_query($conn,$select_query);
     $number=mysqli_num_rows($result_select);
     if($number>0){
       echo "<script>alert('This category is present inside the database')</script>";
     }else{
-      $insert_query="INSERT INTO   `mystore`.`categories` ( `category_title`) VALUES ('$category_title')";
+      $insert_query="INSERT INTO   `categories` ( `category_title`) VALUES ('$category_title')";
       $result=mysqli_query($conn,$insert_query);
       if($result){
         echo "<script>alert('Category has been inserted successfully')</script>";

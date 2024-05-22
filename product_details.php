@@ -67,10 +67,9 @@
             <li class="nav-item">
               <a class="nav-link" href="cart.php"
                 ><i class="fa-solid fa-cart-shopping"></i><sup>
-                  <?php
+                <?php
                     getNoOfCartItems();
-                  ?>
-                </sup></a
+                  ?></sup></a
               >
             </li>
             <li class="nav-item">
@@ -80,9 +79,15 @@
                 getTotalCartPrice()
               ?>
               /-
-            </a>            </li>
+            </a>
+
+            </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0 d-flex" action="search_product.php" method="get">
+          <form
+            class="form-inline my-2 my-lg-0 d-flex"
+            action="search_product.php"
+            method="get"
+          >
             <input
               class="form-control mr-sm-2 mx-1"
               type="search"
@@ -90,14 +95,16 @@
               aria-label="Search"
               name="search_data"
             />
-            <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product" />
+            <input
+              type="submit"
+              value="Search"
+              class="btn btn-outline-light"
+              name="search_data_product"
+            />
           </form>
         </div>
       </nav>
     </div>
-    <?php 
-      addToCart();
-    ?>
     <!-- second child -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
       <ul class="navbar-nav me-auto">
@@ -123,8 +130,10 @@
       <div class="col-md-10">
         <!-- products -->
         <div class="row mx-1">
+        
+         
           <?php
-            getProducts();
+            getProductDetail();
             getProductByCategories();
             getProductByBrands();
           ?>
@@ -138,17 +147,17 @@
           <li class="nav-item bg-info">
             <a href="#" class="nav-link text-light"><h4>Delivery brands</h4></a>
           </li>
-          
+
           <?php
            getBrands()
           ?>
         </ul>
         <!-- Categories to be displayed -->
         <ul class="navbar-nav me-auto text-center">
-          <li class="nav-item bg-info ">
-            <a href="#" class="nav-link text-light "><h4>Categories</h4></a>
+          <li class="nav-item bg-info">
+            <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
           </li>
-          
+
           <?php
             getCategories()
           ?>

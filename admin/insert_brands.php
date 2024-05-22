@@ -2,13 +2,13 @@
   include('../includes/connect.php');
   if(isset($_POST['insert_brand'])){
     $brand_title=$_POST['brand_title'];
-    $select_query="SELECT * FROM   `mystore`.`brands` where `brand_title`='$brand_title'";
+    $select_query="SELECT * FROM   `brands` where `brand_title`='$brand_title'";
     $result_select=mysqli_query($conn,$select_query);
     $number=mysqli_num_rows($result_select);
     if($number>0){
       echo "<script>alert('This brand is present inside the database')</script>";
     }else{
-      $insert_query="INSERT INTO   `mystore`.`brands` ( `brand_title`) VALUES ('$brand_title')";
+      $insert_query="INSERT INTO   `brands` ( `brand_title`) VALUES ('$brand_title')";
       $result=mysqli_query($conn,$insert_query);
       if($result){
         echo "<script>alert('brand has been inserted successfully')</script>";

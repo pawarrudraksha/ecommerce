@@ -67,10 +67,9 @@
             <li class="nav-item">
               <a class="nav-link" href="cart.php"
                 ><i class="fa-solid fa-cart-shopping"></i><sup>
-                  <?php
-                    getNoOfCartItems();
-                  ?>
-                </sup></a
+            <?php
+               getNoOfCartItems();
+              ?></sup></a
               >
             </li>
             <li class="nav-item">
@@ -95,9 +94,6 @@
         </div>
       </nav>
     </div>
-    <?php 
-      addToCart();
-    ?>
     <!-- second child -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
       <ul class="navbar-nav me-auto">
@@ -124,7 +120,7 @@
         <!-- products -->
         <div class="row mx-1">
           <?php
-            getProducts();
+            getAllProducts();
             getProductByCategories();
             getProductByBrands();
           ?>
@@ -157,6 +153,7 @@
     </div>
     <!-- Footer -->
     <?php include("./includes/footer.php") ?>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

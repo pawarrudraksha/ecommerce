@@ -67,14 +67,14 @@
             <li class="nav-item">
               <a class="nav-link" href="cart.php"
                 ><i class="fa-solid fa-cart-shopping"></i><sup>
-                  <?php
+                <?php
                     getNoOfCartItems();
                   ?>
-                </sup></a
+                  </sup></a
               >
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">
+  <a class="nav-link" href="#">
               Total Price: 
               <?php
                 getTotalCartPrice()
@@ -82,7 +82,7 @@
               /-
             </a>            </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0 d-flex" action="search_product.php" method="get">
+          <form class="form-inline my-2 my-lg-0 d-flex" action="" method="get">
             <input
               class="form-control mr-sm-2 mx-1"
               type="search"
@@ -95,9 +95,6 @@
         </div>
       </nav>
     </div>
-    <?php 
-      addToCart();
-    ?>
     <!-- second child -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
       <ul class="navbar-nav me-auto">
@@ -124,7 +121,7 @@
         <!-- products -->
         <div class="row mx-1">
           <?php
-            getProducts();
+            searchProducts();
             getProductByCategories();
             getProductByBrands();
           ?>
@@ -157,6 +154,7 @@
     </div>
     <!-- Footer -->
     <?php include("./includes/footer.php") ?>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

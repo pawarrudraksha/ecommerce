@@ -26,7 +26,7 @@
         move_uploaded_file($temp_image3,"./product_images/$product_image3");
 
 
-        $product_query = "INSERT INTO `mystore`.`products` (product_title, product_description, product_keywords, category_id, brand_id, product_image1, product_image2, product_image3, product_price, status) VALUES ('$product_title', '$product_description', '$product_keywords', '$category_id', '$brand_id', '$product_image1', '$product_image2', '$product_image3', '$product_price', '$product_status')";
+        $product_query = "INSERT INTO `products` (product_title, product_description, product_keywords, category_id, brand_id, product_image1, product_image2, product_image3, product_price, status) VALUES ('$product_title', '$product_description', '$product_keywords', '$category_id', '$brand_id', '$product_image1', '$product_image2', '$product_image3', '$product_price', '$product_status')";
 
         $result_query=mysqli_query($conn,$product_query);
         if($result_query){
@@ -89,7 +89,7 @@
                 <select name="product_categories" id="" class="form-select">
                 <option>Select a category</option>
                 <?php
-                    $select_categories="Select * from `mystore`.`categories`";
+                    $select_categories="Select * from `categories`";
                     $result_categories=mysqli_query($conn,$select_categories);
                     while($row_data=mysqli_fetch_assoc($result_categories)){
                         $category_title=$row_data['category_title'];
@@ -104,7 +104,7 @@
                 <select name="product_brands" id="" class="form-select">
                 <option>Select a Brand</option>
                 <?php
-                $select_brands="Select * from `mystore`.`brands`";
+                $select_brands="Select * from `brands`";
                 $result_brands=mysqli_query($conn,$select_brands);
                 while($row_data=mysqli_fetch_assoc($result_brands)){
                 $brand_title=$row_data['brand_title'];
