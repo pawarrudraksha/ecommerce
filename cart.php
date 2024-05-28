@@ -1,6 +1,7 @@
 <?php
   include('includes/connect.php');
-  include('functions/common_function.php')
+  include('functions/common_function.php');
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +60,7 @@
               <a class="nav-link" href="display_all.php">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Register</a>
+              <a class="nav-link" href="./users/user_registration.php">Register</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
@@ -83,12 +84,24 @@
     <!-- second child -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Welcome Guest</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
-        </li>
+      <li class="nav-item">
+              <?php
+               if(!isset($_SESSION['username'])){
+                  echo "<a class='nav-link' href='#'>Welcome Guest</a>";
+                }else{
+                  echo "<a class='nav-link' href='#'>Welcome ".$_SESSION["username"]."</a>";
+                }
+              ?>
+            </li>
+            <li class="nav-item">
+             <?php
+               if(!isset($_SESSION['username'])){
+                  echo "<a class='nav-link' href='./users/user_login.php'>Login</a>";
+                }else{
+                  echo "<a class='nav-link' href='./users/user_logout.php'>Logout</a>";
+                }
+              ?>
+            </li>
       </ul>
     </nav>
 
@@ -174,6 +187,7 @@
         }?>
 
             <!-- subtotal -->
+            
             <div class="d-flex mb-3">
                 <?php
                     $ip = getIPAddress();
@@ -181,15 +195,18 @@
                     $cart_query = "SELECT * FROM `cart_details` WHERE ip_address='$ip';";
                     $result = mysqli_query($conn, $cart_query);
                     $no_of_items_in_cart=mysqli_num_rows($result);
-                    if($no_of_items_in_cart){
-                        echo "<h4 class='px-3 d-flex align-items-center'>Subtotal:<strong class='text-info'><?php getTotalCartPrice();echo '/-'  ?></strong></h4>
-                        <a href='index.php'>
-                        <input type='submit' name='continue_shopping' value='Continue Shopping' class='bg-info px-3 py-2 border-0 mx-3'>
-                        </a>
-                        
-                        <button class='bg-secondary px-3 py-2 border-0 text-light'><a href='checkout.php' class='text-light text-decoration-none'>Checkout</a></button>
-                        ";
-                    }else{
+                  if ($no_of_items_in_cart > 0) {
+                      echo "<h4 class='px-3 d-flex align-items-center'>Subtotal:<strong class='text-info'>";
+                      echo getTotalCartPrice(); 
+                      echo "/-</strong></h4>
+                            <a href='index.php'>
+                                <input type='submit' name='continue_shopping' value='Continue Shopping' class='bg-info px-3 py-2 border-0 mx-3'>
+                            </a>
+                            <button class='bg-secondary px-3 py-2 border-0 text-light'>
+                                <a href='users/checkout.php' class='text-light text-decoration-none'>Checkout</a>
+                            </button>";
+                  }
+                  else{
                         echo "<a href='index.php'>
                         <input type='submit' name='continue_shopping' value='Continue Shopping' class='bg-info px-3 py-2 border-0 mx-3'>
                         </a>";   

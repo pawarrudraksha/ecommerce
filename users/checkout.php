@@ -1,5 +1,6 @@
 <?php
-  include('includes/connect.php');
+  include('../includes/connect.php');
+  @session_start();
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <!-- navbar -->
@@ -50,15 +51,15 @@
         >
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="index.php"
+              <a class="nav-link" href="../index.php"
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="display_all.php">Products</a>
+              <a class="nav-link" href="../display_all.php">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Register</a>
+              <a class="nav-link" href="./user_registration.php">Register</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
@@ -72,10 +73,22 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-            <a class="nav-link" href="#">Welcome Guest</a>
+              <?php
+               if(!isset($_SESSION['username'])){
+                  echo "<a class='nav-link' href='#'>Welcome Guest</a>";
+                }else{
+                  echo "<a class='nav-link' href='#'>Welcome ".$_SESSION["username"]."</a>";
+                }
+              ?>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+             <?php
+               if(!isset($_SESSION['username'])){
+                  echo "<a class='nav-link' href='./user_login.php'>Login</a>";
+                }else{
+                  echo "<a class='nav-link' href='./user_logout.php'>Logout</a>";
+                }
+              ?>
             </li>
         </ul>
         </nav>
@@ -94,8 +107,8 @@
         <!-- products -->
         <div class="row mx-1">
             <?php
-                if(!isset($_SESSION['username'])){
-                    include("./users/user_login.php");
+              if(!isset($_SESSION['username'])){
+                    include("./user_login.php");
                 }else{
                     include("./payment.php");
                 }
@@ -104,7 +117,7 @@
       </div>
     </div>
     <!-- Footer -->
-    <?php include("./includes/footer.php") ?>
+    <?php include("../includes/footer.php") ?>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

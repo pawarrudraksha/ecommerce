@@ -1,5 +1,4 @@
 <?php
-include("./includes/connect.php");
 function getProducts(){
   global $conn;
   if(!isset($_GET['category'])){
