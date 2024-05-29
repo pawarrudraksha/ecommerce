@@ -1,3 +1,12 @@
+<?php
+  include('../includes/connect.php');
+  include('../functions/common_function.php');
+  session_start();
+  if(!isset($_SESSION['admin_username'])){
+    echo "<script>alert('You need to login')</script>";
+    echo "<script>window.open('admin_login.php','_self')</script>";
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,6 +27,11 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../style.css" />
+    <style>
+      body{
+        overflow-x: hidden;
+      }
+    </style>
   </head>
   <body>
     <!-- navbar -->
@@ -33,7 +47,7 @@
           <nav class="navbar navbar-expand-lg">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a href="" class="nav-link">Welcome Guest</a>
+                <a href="" class="nav-link">Welcome <?php echo $_SESSION['admin_username']?></a>
               </li>
             </ul>
           </nav>
@@ -54,7 +68,7 @@
                 class="admin_image"
               />
             </a>
-            <p class="text-light text-center">Admin Name</p>
+            <p class="text-light text-center"><?php echo $_SESSION['admin_username']?></p>
           </div>
           <div class="button text-center">
             <button class="mx-1">
@@ -62,7 +76,7 @@
                 >Insert Products</a
               ></button
             ><button class="mx-1">
-              <a href="#" class="nav-link text-light bg-info my-1 p-2 mx-1"
+              <a href="index.php?view_products" class="nav-link text-light bg-info my-1 p-2 mx-1"
                 >View Products</a
               ></button
             ><button class="mx-1">
@@ -70,7 +84,7 @@
                 >Insert Categories</a
               ></button
             ><button class="mx-1">
-              <a href="#" class="nav-link text-light bg-info my-1 p-2 mx-1"
+              <a href="index.php?view_categories" class="nav-link text-light bg-info my-1 p-2 mx-1"
                 >View Categories</a
               ></button
             ><button class="mx-1">
@@ -78,23 +92,23 @@
                 >Insert Brands</a
               ></button
             ><button class="mx-1">
-              <a href="#" class="nav-link text-light bg-info my-1 p-2 mx-1"
+              <a href="index.php?view_brands" class="nav-link text-light bg-info my-1 p-2 mx-1"
                 >View Brands</a
               ></button
             ><button class="mx-1">
-              <a href="#" class="nav-link text-light bg-info my-1 p-2 mx-1"
+              <a href="index.php?list_orders" class="nav-link text-light bg-info my-1 p-2 mx-1"
                 >All orders</a
               ></button
             ><button class="mx-1">
-              <a href="#" class="nav-link text-light bg-info my-1 p-2 mx-1"
+              <a href="index.php?view_payments" class="nav-link text-light bg-info my-1 p-2 mx-1"
                 >All Payments</a
               ></button
             ><button class="mx-1">
-              <a href="#" class="nav-link text-light bg-info my-1 p-2 mx-1"
+              <a href="index.php?list_users" class="nav-link text-light bg-info my-1 p-2 mx-1"
                 >List Users</a
               ></button
             ><button class="mx-1">
-              <a href="#" class="nav-link text-light bg-info my-1 p-2 mx-1">Logout</a>
+              <a href="admin_logout.php" class="nav-link text-light bg-info my-1 p-2 mx-1">Logout</a>
             </button>
           </div>
         </div>
@@ -109,6 +123,52 @@
           if(isset($_GET['insert_brand'])){
             include('insert_brands.php');
           }
+          if(isset($_GET['view_products'])){
+            include('view_products.php');
+          }
+          if(isset($_GET['edit_product_id'])){
+            include('edit_product.php');
+          }
+          if(isset($_GET['delete_product_id'])){
+            include('delete_product.php');
+          }
+          if(isset($_GET['delete_user_id'])){
+            include('delete_user.php');
+          }
+          if(isset($_GET['view_categories'])){
+            include('view_categories.php');
+          }
+          if(isset($_GET['view_brands'])){
+            include('view_brands.php');
+          }
+          if(isset($_GET['view_payments'])){
+            include('view_payments.php');
+          }
+          if(isset($_GET['edit_category_id'])){
+            include('edit_category.php');
+          }
+          if(isset($_GET['edit_brand_id'])){
+            include('edit_brand.php');
+          }
+          if(isset($_GET['delete_category_id'])){
+            include('delete_category.php');
+          }
+          if(isset($_GET['delete_brand_id'])){
+            include('delete_brand.php');
+          }
+          if(isset($_GET['delete_payment_id'])){
+            include('delete_payment.php');
+          }
+          if(isset($_GET['delete_order_id'])){
+            include('delete_order.php');
+          }
+          if(isset($_GET['list_orders'])){
+            include('list_orders.php');
+          }
+          if(isset($_GET['list_users'])){
+            include('list_users.php');
+          }
+
         ?>
       </div>
     </div>
