@@ -27,7 +27,7 @@
         }
         else{
             $hash_password=password_hash($user_password,PASSWORD_DEFAULT);
-            move_uploaded_file($temp_image1,"./user_images/$user_address");
+            move_uploaded_file($temp_image1,"./user_images/$user_image");
             $user_query = "INSERT INTO `user_table` (user_name, user_email, user_address,user_mobile,user_ip,user_image, user_password) VALUES ('$user_name', '$user_email', '$user_address', '$user_mobile' , '$user_ip' ,'$user_image', '$hash_password');";
             $result_query=mysqli_query($conn,$user_query);
             if($result_query){

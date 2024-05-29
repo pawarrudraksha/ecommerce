@@ -60,8 +60,15 @@
               <a class="nav-link" href="display_all.php">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./users/user_registration.php">Register</a>
-            </li>
+              <?php
+                if(isset($_SESSION['username'])){
+                  echo "<a class='nav-link' href='./users/profile.php'>My Account</a>
+                  ";
+                }else{
+                  echo "<a class='nav-link' href='./users/user_registration.php'>Register</a>
+                  ";
+                }
+              ?>            </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
             </li>

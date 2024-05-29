@@ -348,5 +348,64 @@ function getTotalCartPrice(){
   }
   echo $total;
 }
+function returnTotalCartPrice(){
+  global $conn;
+  $ip = getIPAddress();
+  $total = 0;
+  $cart_query = "SELECT * FROM `cart_details` WHERE ip_address='$ip';";
+  $result = mysqli_query($conn, $cart_query);
 
+  while($row = mysqli_fetch_assoc($result)){
+    $quantity=$row["quantity"];
+    $product_id = $row["product_id"];
+    $select_products = "SELECT * FROM `products` WHERE product_id=$product_id";
+    $result_products = mysqli_query($conn, $select_products);
+    if ($product_row = mysqli_fetch_assoc($result_products)){
+      $product_price = $product_row['product_price'];
+      $total += $product_price*$quantity;
+    }
+  }
+  return $total;
+}
+function getTotalQuantity(){
+  global $conn;
+  $ip = getIPAddress();
+  $total = 0;
+  $cart_query = "SELECT * FROM `cart_details` WHERE ip_address='$ip';";
+  $result = mysqli_query($conn, $cart_query);
+  $quantity=0;
+  while($row = mysqli_fetch_assoc($result)){
+    $quantity+=$row["quantity"];
+  }
+  return $quantity;
+}
+
+function getUserOrderDetails(){
+  global $conn;
+  $username=$_SESSION['username'];
+  $query="select * from `user_table` where user_name='$username'";
+  $result=mysqli_query($conn,$query);
+  $row=mysqli_fetch_array($result);
+  $user_id=$row['user_id'];
+  if(!isset($_GET['edit_account']) and !isset($_GET['my_orders']) and !isset($_GET['delete_account'])){
+    $get_orders="select * from `user_orders` where user_id=$user_id and order_status='incomplete'";
+    $get_orders_result=mysqli_query($conn,$get_orders);
+    $row_count=mysqli_num_rows($get_orders_result);
+    if($row_count>0){
+      echo "<h3 class='text-center my-4 mx-0'>You have <span class='text-danger'>$row_count</span> pending orders</h3>";
+      echo "<p class='text-center'><a href='profile.php?my_orders' class='text-dark'>Order details</a></p>";
+    }else{
+      echo "<h3 class='text-center my-4 mx-0'>You have no pending orders</h3>";
+      echo "<p class='text-center'><a href='../index.php' class='text-dark'>Explore Products</a></p>";
+    }
+  }
+}
+function getUserDetails(){
+  global $conn;
+  $username=$_SESSION['username'];
+  $query="select * from `user_table` where user_name='$username'";
+  $result=mysqli_query($conn,$query);
+  $row=mysqli_fetch_array($result);
+  return $row;
+}
 ?>
